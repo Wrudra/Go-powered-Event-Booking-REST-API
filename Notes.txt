@@ -1,0 +1,17 @@
+* To accept and handle an incoming request, we could use the HTTP package, that's part of GO's standard library.
+But I will use the Gin package, which is a third-party package provided for GO.
+
+    "Gin is a HTTP web framework written in Go (Golang). 
+    It features a Martini-like API with much better performance -- up to 40 times faster. 
+    If you need smashing performance, get yourself some Gin."
+
+    Link:  https://github.com/gin-gonic/gin
+
+    Before downloading the library, create a mod file 
+    Run: go mod init root
+
+    Download library: go get -u github.com/gin-gonic/gin
+
+    Lastly import
+   
+*
