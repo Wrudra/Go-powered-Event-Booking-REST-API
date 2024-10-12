@@ -1,7 +1,8 @@
 /*
-	All the logic that deals with storing event data in a database
+All the logic that deals with storing event data in a database
 */
 package models
+
 import "time"
 
 /*
@@ -9,10 +10,10 @@ import "time"
 */
 type Event struct {
 	ID          int
-	Name        string
-	Description string
-	Location    string
-	DateTime    time.Time
+	Name        string    `binding:"required"`
+	Description string    `binding:"required"`
+	Location    string    `binding:"required"`
+	DateTime    time.Time `binding:"required"`
 	UserID      int
 }
 
@@ -22,10 +23,17 @@ type Event struct {
 var events = []Event{}
 
 /*
-	Save such an event to the database later,
+	A method to save events to the database later,
 	for the moment simply into a variable
 */
 func (e Event) Save() {
 	// later: add it to a database
 	events = append(events, e)
+}
+
+/*
+	A func to get all events
+*/
+func GetAllEvents() []Event {
+	return events
 }
