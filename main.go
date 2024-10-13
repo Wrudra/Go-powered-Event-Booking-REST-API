@@ -2,12 +2,18 @@ package main
 
 import (
 	"net/http"
+	"root/db"     //Database package
 	"root/models" //Event model package
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	/*
+		Initializing database after calling the database package
+	*/
+	db.InitDB()
+
 	/*
 		Default() essentially configues an HTTP server for us with basic functionalities,
 		to log incoming requests and to automatically recover if some part of our program should crash.
