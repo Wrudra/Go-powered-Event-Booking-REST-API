@@ -50,7 +50,14 @@ func getEvents(context *gin.Context) { //pointer
 		After importing Models package,
 		We get back the events that are managed in that separate file
 	*/
-	events := models.GetAllEvents()
+	events, err := models.GetAllEvents()
+	/*
+		Checking error
+	*/
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch events."})
+		return
+	}
 
 	/*
 		Sending a response in JSON format
@@ -84,7 +91,14 @@ func createEvent(context *gin.Context) {
 	event.ID = 1
 	event.UserID = 1
 
-	event.Save()
+	err = event.Save()
+	/*
+		Checking error if any data is missing for creating an event
+	*/
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not create event."})
+		return
+	}
 
 	context.JSON(http.StatusCreated, gin.H{"message": "Event created!", "event": event}) //"event":event sending back that event that was created
 }
